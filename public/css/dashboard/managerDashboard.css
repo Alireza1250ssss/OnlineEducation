@@ -1,0 +1,134 @@
+@import url('https://fonts.googleapis.com/css2?family=Exo+2:wght@300&display=swap');
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'Exo 2',sans-serif;
+    list-style: none;
+ 
+}
+a{
+    text-decoration: none;
+}
+body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-flow: column;
+    min-height: 100vh;
+    background: #fff;
+}
+
+aside{
+    position: fixed;
+    top: 0; left: 0;
+    height: 100%;
+    width: 22%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    background: #009F94;
+    color: #fff;
+}
+aside .titles{
+    padding: .3rem 1.6rem;
+    margin: 1.9rem 0 ;
+    border-bottom: 2px solid black;
+    display: flex;
+    justify-content: space-between;
+}
+.titles a{
+    color: #fff;
+    display: flex;
+    align-items: center;
+    background-color: red;
+    height: 24px;
+    margin-top: 6px;
+    border-radius: 4px;
+    padding: 5px;
+}
+aside li{
+    cursor: pointer;
+}
+aside ul{
+    margin: 1.5rem 0;
+}
+aside ul li.title{
+    font-weight: bold;
+    text-align: center;
+    padding: .4rem 0;
+    font-size: 1.1rem;
+}
+aside ul li ul li{
+    list-style: '>> ';
+    text-transform: capitalize;
+    font-weight: bold;
+    margin: .5rem 0;
+}
+.box{
+    display: flex;
+    position: absolute;
+    right: 0;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    width: 75%;
+    margin: 3vh 0 0 0;
+    border-top: 4px solid black;
+    padding: 3rem; 
+    height: 110vh;
+    overflow: auto;
+}
+.box > div {
+    display: flex;
+    position: relative;
+    height: 90%;
+    overflow: hidden;
+}
+#users-list{
+    width: 100%;
+    position: relative;
+    height: 90vh;
+    padding: .5rem .7rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
+#users-list .searchbox{
+    position: relative;
+    display: flex;
+}
+#courses{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    width: 100%;
+    height: 100%;
+}
+#courses form{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 40%;
+    justify-content: space-around;
+    padding: 1rem;
+    border: 1px solid black !important;
+}
+#courses form input{
+    padding: .1rem .3rem;
+}
+#courses form input[type='submit']{
+    text-transform: uppercase;
+    background-color: #009F94;
+    color: #fff
+}
+#list-of-courses{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 65%;
+    margin: 5rem 0 0;
+    box-shadow: 0 0 15px black;
+    overflow: auto;
+}
