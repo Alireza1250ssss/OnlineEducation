@@ -81,9 +81,9 @@ class UserController extends Controller
      * @param  \App\Models\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, User $user)
+    public function update(Request $request, $user)
     {
-       
+        $user = User::withoutGlobalScopes()->find($user);
         $user->update($request->all());
         return redirect('/dashboard');
     }
