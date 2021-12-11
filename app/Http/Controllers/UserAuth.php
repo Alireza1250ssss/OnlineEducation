@@ -17,7 +17,7 @@ class UserAuth extends Controller
         $is_confirmed=1;
         $auth=Auth::attempt(compact('email', 'password','is_confirmed'));
         if($auth)
-        return redirect('/dashboard');
+        return redirect('/');
         else
         return redirect('login')->with('message','Authentication Failed');
     }

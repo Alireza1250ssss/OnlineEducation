@@ -13,8 +13,8 @@ searchform.onsubmit=function(e){
     var national_code = this.querySelector("input[name='national_code']").value;
     var xhr = new XMLHttpRequest();
     xhr.onload=function(){
-        console.log(this.responseText);
         document.getElementById('list-of-users').innerHTML=this.responseText;
+        updatePag();
     }
     xhr.open('GET','users?name='+name+'&national_code='+national_code+'&role='+role);
     xhr.send();
@@ -28,6 +28,22 @@ function show(id){
     document.getElementById(id).classList.remove('d-none');
 }
 
-var forms = document.querySelectorAll('form');
+
+function updatePag(){
+    var pagLinks = document.querySelectorAll('a.page-link');
+        pagLinks.forEach(element => {
+            element.addEventListener('click',function(event){
+                event.preventDefault();
+                var xhr =new XMLHttpRequest();
+                xhr.onload=function(){
+                    document.getElementById('list-of-users').innerHTML=this.responseText;
+                    updatePag();
+                }
+                var role=document.querySelector('#searchform select').value;
+                xhr.open("GET",this.getAttribute('href')+'&role='+role);
+                xhr.send();
+            });
+        });    
+}
 
 

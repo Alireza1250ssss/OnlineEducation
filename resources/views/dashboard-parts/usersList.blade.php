@@ -7,7 +7,7 @@
                 </thead>
             @foreach($all as $person)
                 <tr>
-                    <td class="d-none"><form action="/users/{{$person->id}}" method="post" id="{{'form'.$person->id}}">
+                    <td class="d-none"><form action="manager/users/{{$person->id}}" method="post" id="{{'form'.$person->id}}">
                         @csrf @method('put')
                     </form></td>
                     <td><input type="text" name="name" form="{{'form'.$person->id}}" value="{{$person->name}}"></td>
@@ -19,7 +19,7 @@
                     <td class="d-none d-md-block"><input type="email" name="email" form="{{'form'.$person->id}}" value="{{$person->email}}"></td>
                     <td >
                         <input type="submit" value="Update" class="bg-primary text-light" form="{{'form'.$person->id}}">
-                        <form action="/users/{{$person->id}}" method="post" class="d-inline-block">
+                        <form action="manager/users/{{$person->id}}" method="post" class="d-inline-block">
                             @csrf @method('delete')
                             <input type="submit" value="delete" class="bg-danger text-light mx-1">
                         </form>

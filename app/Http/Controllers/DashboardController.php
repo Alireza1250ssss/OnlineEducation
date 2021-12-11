@@ -12,7 +12,13 @@ class DashboardController extends Controller
         $role=auth()->user()->role;
         if($role=='manager')
             return $this->managerDashboard();
-        
+        else if($role=='teacher')
+            return $this->teacherDashboard(auth()->user());
+    }
+
+    private function teacherDashboard(User $user){
+        $courses = Course::where('teacher_id',$user->id)->get();
+        return view('teacher.dashboard',compact('courses'));
     }
 
     private function managerDashboard(){
@@ -32,5 +38,10 @@ class DashboardController extends Controller
         $courseUsers=$course->users()->paginate(12);
         $students = User::query()->where('role','student')->paginate(12);
         return view('course',compact('students','course','courseUsers'));
+    }
+
+    public function teacherCourse(Course $course){
+        $exams = $course->exams()->get();
+        return view('teacher.course',compact('exams','course'));
     }
 }

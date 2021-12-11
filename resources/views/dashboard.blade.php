@@ -31,7 +31,7 @@
 
 
             <div class="searchbox">
-                <form action="/users" method="GET" id="searchform">
+                <form action="manager/users" method="GET" id="searchform">
                     <input type="text" name="name" placeholder="name">
                     <input type="number" name="national_code" placeholder="national_code">
                     <label>Role
@@ -53,7 +53,7 @@
       @include('dashboard-parts.userConfirm')
 
         <div class="part d-none" id="courses">
-            <form action="/courses" method="post" >
+            <form action="manager/courses" method="post" >
                 <h2>Create a Course</h2>
                 @csrf 
                 <input type="text" name="title" placeholder="title">
@@ -73,6 +73,6 @@
     </div>
 
 
-    <script src="js/dashboard.js"></script>
+    <script src="{{asset('js/dashboard.js')}}"></script>
 </body>
 </html>

@@ -1,0 +1,89 @@
+@import url('https://fonts.googleapis.com/css2?family=Exo+2:wght@300&display=swap');
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    text-transform: capitalize;
+    font-family: 'Exo 2',sans-serif;
+}
+body{
+    min-height: 100vh;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+.addcourse{
+    width: 25%;
+    height: 100vh;
+    position: fixed;
+    left: 0; top: 0;
+    border-radius: 15px;
+    box-shadow: 0 0 18px rgb(51, 42, 42);
+    padding: 1.4rem;
+}
+
+.addcourse form input,form textarea{
+    padding: .15rem .3rem;
+    width: 100%;
+}
+input[type='submit']{
+    background-color: #009F94;
+    color: #fff;
+    letter-spacing: 2.5px;
+    outline: none;
+    border: none;
+}
+input[type='submit']:hover{
+    background-color: #333;
+}
+.exams{
+    width: 70%;
+    position: absolute;
+    right: 0; top: 0;
+    min-height: 100vh;
+}
+.exam{
+    width: 40%;
+    box-shadow: 0 0 10px gray;
+    border-radius: 15px;
+}
+.exam a{
+    text-decoration: none;
+    color: #fff;
+    text-align: center;
+}
+.exam a:hover{
+    background-color: #333 !important;
+}
+button{
+    border: none;
+    outline: none;
+}
+
+
+/*Media Queries*/
+@media (max-width:768px){
+    .addcourse{
+        width: 100%;
+        height: 100vh;
+        position: absolute;
+        bottom: 0;
+    }
+    .exams{
+        position: relative;
+        top: 100vh;
+        width: 100%;
+        flex-direction: column;
+    }
+    .exam{
+        margin: 1rem 0;
+    }
+    .exam a{
+        width: 100% !important;
+    }
+    .exam form{
+        width: 100% !important;
+        margin: .8rem 0;
+    }
+
+}

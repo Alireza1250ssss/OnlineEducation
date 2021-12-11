@@ -3,7 +3,7 @@
     <h3>{{$course->title}}</h3>
     <h4>{{'Instructor : '.$course->teacher->name}}</h4>
     <span>{{$course->filled.' of '.$course->capacity}}</span>
-    <form action="/dashboard/course/{{$course->id}}" method="get" target="_blank">
+    <form action="manager/dashboard/course/{{$course->id}}" method="get" target="_blank">
         <input type="submit" value="Manage">
     </form>
 </div>

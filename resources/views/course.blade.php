@@ -5,7 +5,7 @@
 <h4>Course Students : </h4>
 {{$courseUsers->links()}}
 <ul>
-    <form action="/course-user/{{$course->id}}" method="post" class="d-flex justify-content-around flex-wrap" id="{{$course->id}}">
+    <form action="manager/course-user/{{$course->id}}" method="post" class="d-flex justify-content-around flex-wrap" id="{{$course->id}}">
         @csrf
         @foreach($courseUsers as $user)
         <li class="box">
@@ -22,7 +22,7 @@
 <div class="cnt">
 <h3 class="my-4">Add New Students</h3>
 {{$students->links()}}
-<form action="/course-user/{{$course->id}}" method="post">
+<form action="manager/course-user/{{$course->id}}" method="post">
     @csrf
     @foreach($students as $student)
     @if(!in_array($student->id,$courseUsers->modelKeys()))

@@ -31,7 +31,7 @@
                 <h1>education</h1>
                 <h3>learn online from home</h3>
                 @auth
-                <a href="/dashboard"><button>Dashboard >></button></a>
+                <a href="{{auth()->user()->role.'/dashboard'}}"><button>Dashboard >></button></a>
                 @else
                 <a href="/login"><button>Login >></button></a>
                 @endauth

@@ -3,8 +3,10 @@
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\CourseUserController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\ExamController;
 use App\Http\Controllers\UserAuth;
 use App\Http\Controllers\UserController;
+use App\Http\Middleware\Role;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -18,19 +20,33 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('mainPage');
-});
+Route::view('/', 'mainPage');
 Route::post('/register',[UserAuth::class,'register']);
-Route::view('/register','register');
+Route::view('/register','register')->name('register');
 Route::post('/login',[UserAuth::class,'login']);
 Route::view('/login','login')->name('login');
-Route::view('/register','register')->name('register');
-Route::get('/dashboard',[DashboardController::class,'showDashboard'])->middleware('auth');
-Route::get('/dashboard/course/{course}',[DashboardController::class,'courseDashboard'])->middleware('auth');
-Route::post('/course-user/{course}',[CourseUserController::class,'store'])->middleware('auth');
-Route::resources([
-    'users'=> UserController::class,
-    'courses'=>CourseController::class,
-]);
+
+Route::group(['middleware'=>'auth'],function(){
+
+    Route::group(['middleware'=>'role:manager','prefix'=>'manager','as'=>'manager.'],function(){
+        Route::get('dashboard',[DashboardController::class,'showDashboard']);
+        Route::get('/dashboard/course/{course}',[DashboardController::class,'courseDashboard']);
+        Route::post('/course-user/{course}',[CourseUserController::class,'store']);
+        Route::resources([
+            'users'=> UserController::class,
+            'courses'=>CourseController::class,
+        ]);
+    });
+
+    Route::group(['middleware'=>'role:teacher','prefix'=>'teacher','as'=>'teacher.'],function(){
+        Route::get('dashboard',[DashboardController::class,'showDashboard']);
+        Route::get('/dashboard/course/{course}',[DashboardController::class,'teacherCourse']);
+        Route::resource('exams',ExamController::class);
+    });
+});
+
+
+
+
+
 

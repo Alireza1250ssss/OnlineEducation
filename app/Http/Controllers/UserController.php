@@ -19,7 +19,7 @@ class UserController extends Controller
     {
         $where=[];
         foreach($request->all() as $key=>$input)
-            if(!is_null($input)) $where[$key]=$input;
+            if(!is_null($input) && $key!='page') $where[$key]=$input;
         
         if(!empty($where))
             $data = User::query()->where($where)->paginate(5);
@@ -85,7 +85,7 @@ class UserController extends Controller
     {
         $user = User::withoutGlobalScopes()->find($user);
         $user->update($request->all());
-        return redirect('/dashboard');
+        return back();
     }
 
     /**
@@ -98,6 +98,6 @@ class UserController extends Controller
     {
         $user=User::withoutGlobalScopes()->find($user);
         $user->delete();
-        return redirect('/dashboard');
+        return back();
     }
 }
