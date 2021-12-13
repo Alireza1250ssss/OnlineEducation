@@ -25,6 +25,7 @@ Route::post('/register',[UserAuth::class,'register']);
 Route::view('/register','register')->name('register');
 Route::post('/login',[UserAuth::class,'login']);
 Route::view('/login','login')->name('login');
+Route::get('logout',[UserAuth::class,'logout']);
 
 Route::group(['middleware'=>'auth'],function(){
 
