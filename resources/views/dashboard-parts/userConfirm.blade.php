@@ -10,7 +10,7 @@
         @foreach($waitingList as $person)
         <tr>
             <td class="d-none">
-                <form action="manager/users/{{$person->id}}" method="post" id="{{'form'.$person->id}}">
+                <form action="users/{{$person->id}}" method="post" id="{{'form'.$person->id}}">
                     @csrf @method('put')
                 </form>
             </td>
@@ -25,7 +25,7 @@
             <td>
                 <input type="hidden" name="is_confirmed" value="1" form="{{'form'.$person->id}}">
                 <input type="submit" value="Accept" class="bg-primary text-light" form="{{'form'.$person->id}}">
-                <form action="manager/users/{{$person->id}}" method="post" class="d-inline-block">
+                <form action="users/{{$person->id}}" method="post" class="d-inline-block">
                     @csrf @method('delete')
                     <input type="submit" value="delete" class="text-light bg-danger mx-1">
                 </form>

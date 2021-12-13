@@ -53,7 +53,7 @@
       @include('dashboard-parts.userConfirm')
 
         <div class="part d-none" id="courses">
-            <form action="manager/courses" method="post" >
+            <form action="{{route('manager.courses.store')}}" method="post" >
                 <h2>Create a Course</h2>
                 @csrf 
                 <input type="text" name="title" placeholder="title">

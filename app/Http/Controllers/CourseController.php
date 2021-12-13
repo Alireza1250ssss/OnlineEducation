@@ -36,7 +36,7 @@ class CourseController extends Controller
     public function store(Request $request)
     {
         Course::create($request->all());
-        return redirect('/dashboard');
+        return redirect('manager/dashboard');
     }
 
     /**

@@ -15,7 +15,7 @@ class CourseUserController extends Controller
             'filled'=> count($course->users)
         ]);
 
-        return redirect("/dashboard/course/$course->id");
+        return redirect("manager/dashboard/course/$course->id");
 
     }
 
