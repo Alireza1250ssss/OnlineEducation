@@ -17,6 +17,7 @@ class CreateExamQuestionTable extends Migration
             $table->id();
             $table->foreignId('exam_id')->constrained()->onDelete('cascade');
             $table->foreignId('question_id')->constrained()->onDelete('cascade');
+            $table->float('score');
             $table->timestamps();
         });
     }

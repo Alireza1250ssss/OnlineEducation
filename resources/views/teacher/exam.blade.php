@@ -74,6 +74,7 @@
     <div class="row">
     <form action="{{route('teacher.exam-question',[$exam->id])}}" method="post" class="my-3 col-8" id="bank-q">
         @csrf
+        <input type="hidden" name="action" value="attach">
         <input type="submit" value="Add To Exam" class="bg-primary px-2 py-1 rounded-pill ">
     </form>
     </div>
@@ -85,11 +86,18 @@
     @foreach($exam->questions as $question)
     <div class="Q-item d-flex justify-content-between align-items-center my-1">
         <span>{{$question->title}}</span>
+        <form class="d-inline-block"  method="POST" action="{{route('teacher.update-score',[$exam->id])}}">
+            @csrf
+            <input type="hidden" name="question_id" value="{{$question->id}}">
+            <input type="number" name="score" step="0.01" value="{{$question->pivot->temp_score}}" class="w-25" >
+            <input type="submit" value="&#8634;" class="rounded-circle p-1">
+        </form>
         <input type="checkbox" name="question_id[]" value="{{$question->id}}" form="exam-q">
     </div>
     @endforeach
     <form action="{{route('teacher.exam-question',[$exam->id])}}" method="post" class="mt-2" id="exam-q">
         @csrf
+        <input type="hidden" name="action" value="detach">
         <input type="submit" value="Remove From Exam" class="bg-danger rounded-pill px-2">
     </form>
 </div>

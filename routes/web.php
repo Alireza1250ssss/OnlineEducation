@@ -49,6 +49,7 @@ Route::group(['middleware'=>'auth'],function(){
             'questions'=>QuestionController::class
         ]);
         Route::post('/exam-question/{exam}',ExamQuestionController::class)->name('exam-question');
+        Route::post('exam-question/update/{exam}',[ExamQuestionController::class,'updateScore'])->name("update-score");
     });
 });
 

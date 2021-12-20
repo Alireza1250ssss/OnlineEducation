@@ -51,7 +51,7 @@ class QuestionController extends Controller
             'content'=> $request->content,
             'answer'=> $request->answer ?? null
         ]);
-        $exam->questions()->attach($question);
+        $exam->questions()->attach($question,['temp_score'=>$question->score]);
         return back();
     }
 
