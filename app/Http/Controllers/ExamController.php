@@ -48,7 +48,10 @@ class ExamController extends Controller
      */
     public function show(Exam $exam)
     {
-        //
+        $exam = Exam::with(['questions','course.questions'])->find($exam->id);
+        return view('teacher.exam',[ 
+            'exam'=>$exam
+         ]);
     }
 
     /**

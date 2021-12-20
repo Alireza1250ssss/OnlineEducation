@@ -4,6 +4,8 @@ use App\Http\Controllers\CourseController;
 use App\Http\Controllers\CourseUserController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ExamController;
+use App\Http\Controllers\ExamQuestionController;
+use App\Http\Controllers\QuestionController;
 use App\Http\Controllers\UserAuth;
 use App\Http\Controllers\UserController;
 use App\Http\Middleware\Role;
@@ -40,9 +42,13 @@ Route::group(['middleware'=>'auth'],function(){
     });
 
     Route::group(['middleware'=>'role:teacher','prefix'=>'teacher','as'=>'teacher.'],function(){
-        Route::get('dashboard',[DashboardController::class,'showDashboard']);
-        Route::get('/dashboard/course/{course}',[DashboardController::class,'teacherCourse']);
-        Route::resource('exams',ExamController::class);
+        Route::get('dashboard',[DashboardController::class,'showDashboard'])->name('dashboard');
+        Route::get('/dashboard/course/{course}',[DashboardController::class,'teacherCourse'])->name('course');
+        Route::resources([
+            'exams'=>ExamController::class,
+            'questions'=>QuestionController::class
+        ]);
+        Route::post('/exam-question/{exam}',ExamQuestionController::class)->name('exam-question');
     });
 });
 

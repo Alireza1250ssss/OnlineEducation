@@ -34,7 +34,8 @@
         <div class="exam  p-2 mx-1">
             <h4>{{$exam->title}}</h4>
             <p>{{'Details : '.$exam->details}}</p>
-            <a href="" class="rounded-pill w-25 d-inline-block bg-primary">Edit</a>
+            <a href="{{route('teacher.exams.show',[$exam->id])}}"
+             class="rounded-pill w-25 d-inline-block bg-primary editexam" >Edit</a>
             <form action="{{route('teacher.exams.destroy',$exam->id)}}" method="post" class="d-inline-block w-25">@csrf @method('delete')
             <button type="submit"  class="rounded-pill w-100 text-light d-inline-block bg-danger">Delete</button></form>
         </div>
@@ -44,4 +45,11 @@
     @endif
 </div>
 
+<div class="manage-exam">
+
+</div>
+
+
+
+<script src="{{asset('js/teacher/course.js')}}"></script>
 </body>

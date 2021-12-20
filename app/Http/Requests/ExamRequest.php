@@ -25,7 +25,7 @@ class ExamRequest extends FormRequest
     {
         return [
             'title'=>'required',
-            'duration'=>['regex:/^120|(1[01]\d)|([1-9]\d)$/i','required'],
+            'duration'=>['between:10,120','required','integer'],
         ];
     }
 }

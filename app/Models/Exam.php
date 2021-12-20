@@ -19,4 +19,8 @@ class Exam extends Model
     public function course(){
         return $this->belongsTo(Course::class);
     }
+
+    public function questions(){
+        return $this->belongsToMany(Question::class);
+    }
 }
