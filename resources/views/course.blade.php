@@ -7,6 +7,7 @@
 <ul>
     <form action="http://127.0.0.1:8000/manager/course-user/{{$course->id}}" method="post" class="d-flex justify-content-around flex-wrap" id="{{$course->id}}">
         @csrf
+        <input type="hidden" name="action" value="remove">
         @foreach($courseUsers as $user)
         <li class="box">
             <p>{{'name: '.$user->name}}</p>
@@ -24,6 +25,7 @@
 {{$students->links()}}
 <form action="http://127.0.0.1:8000/manager/course-user/{{$course->id}}" method="post">
     @csrf
+    <input type="hidden" name="action" value="add">
     @foreach($students as $student)
     @if(!in_array($student->id,$courseUsers->modelKeys()))
     <div class="box d-inline-block mx-3 my-1">

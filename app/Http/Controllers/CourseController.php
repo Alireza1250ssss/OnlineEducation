@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Course;
+use App\Models\User;
+use App\Notifications\CourseAdded;
 use Illuminate\Http\Request;
 
 class CourseController extends Controller
@@ -35,7 +37,9 @@ class CourseController extends Controller
      */
     public function store(Request $request)
     {
-        Course::create($request->all());
+        $course=Course::create($request->all());
+        $teacher = User::find($request->teacher_id);
+        $teacher->notify(new CourseAdded($course));
         return redirect('manager/dashboard');
     }
 

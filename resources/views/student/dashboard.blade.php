@@ -1,8 +1,8 @@
-<x-header title="Teacher Dashboard" css='dashboard/managerDashboard' />
+<x-header title="Student Dashboard" css='dashboard/managerDashboard' />
 
 <body>
 
-    @include('teacher.dashboard-parts.aside')
+    @include('student.dashboard-parts.aside')
 
     <div class="box">
         <div class="part d-none" id="courses-list">

@@ -5,6 +5,7 @@ use App\Http\Controllers\CourseUserController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ExamController;
 use App\Http\Controllers\ExamQuestionController;
+use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\QuestionController;
 use App\Http\Controllers\UserAuth;
 use App\Http\Controllers\UserController;
@@ -31,6 +32,9 @@ Route::get('logout',[UserAuth::class,'logout']);
 
 Route::group(['middleware'=>'auth'],function(){
 
+    Route::get('{rolePrefix}/notifications/markAsRead',[NotificationController::class,'markRead']);
+    Route::get('{rolePrefix}/notifications/delete',[NotificationController::class,'delete']);
+
     Route::group(['middleware'=>'role:manager','prefix'=>'manager','as'=>'manager.'],function(){
         Route::get('dashboard',[DashboardController::class,'showDashboard']);
         Route::get('/dashboard/course/{course}',[DashboardController::class,'courseDashboard']);
@@ -51,6 +55,14 @@ Route::group(['middleware'=>'auth'],function(){
         Route::post('/exam-question/{exam}',ExamQuestionController::class)->name('exam-question');
         Route::post('exam-question/update/{exam}',[ExamQuestionController::class,'updateScore'])->name("update-score");
     });
+
+
+
+    Route::group(['middleware'=>'role:student','prefix'=>'student','as'=>'student.'],function(){
+        Route::get('dashboard',[DashboardController::class,'showDashboard']);
+        
+    });
+
 });
 
 

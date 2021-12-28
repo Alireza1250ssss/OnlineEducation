@@ -14,6 +14,8 @@ class DashboardController extends Controller
             return $this->managerDashboard();
         else if($role=='teacher')
             return $this->teacherDashboard(auth()->user());
+        else if($role == 'student')
+            return $this->studentDashboard(auth()->user());
     }
 
     private function teacherDashboard(User $user){
@@ -43,5 +45,11 @@ class DashboardController extends Controller
     public function teacherCourse(Course $course){
         $exams = $course->exams()->get();
         return view('teacher.course',compact('exams','course'));
+    }
+
+    private function studentDashboard(User $user)
+    {
+        $courses = $user->courses;
+        return view('student.dashboard',compact('courses'));
     }
 }
