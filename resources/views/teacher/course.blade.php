@@ -38,6 +38,8 @@
              class="rounded-pill w-25 d-inline-block bg-primary editexam" >Edit</a>
             <form action="{{route('teacher.exams.destroy',$exam->id)}}" method="post" class="d-inline-block w-25">@csrf @method('delete')
             <button type="submit"  class="rounded-pill w-100 text-light d-inline-block bg-danger">Delete</button></form>
+            <a href="{{route('teacher.manage-scores',[$exam->id])}}"
+             class="rounded-pill w-50 my-1 d-inline-block  manage-scores" >manage scores</a>
         </div>
         @endforeach
     @else

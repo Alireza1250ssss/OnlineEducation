@@ -105,6 +105,12 @@ button{
     max-height: 80vh;
     overflow-y:auto;
 }
+.manage-scores{
+    background-color: #009F94;
+}
+.manage-scores:hover{
+    background-color: #333;
+}
 
 
 

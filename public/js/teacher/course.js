@@ -1,4 +1,4 @@
-var editexambtns= document.querySelectorAll('.editexam');
+var editexambtns= document.querySelectorAll('.editexam , .manage-scores');
 console.log(editexambtns);
 editexambtns.forEach(element => {
     element.addEventListener('click', function(event){

@@ -2,7 +2,9 @@
 
 namespace App\Providers;
 
+use App\Events\ExamFinishedEvent;
 use App\Events\QuestionAdded;
+use App\Listeners\ExamCorrection;
 use App\Listeners\SetScore;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
@@ -20,6 +22,9 @@ class EventServiceProvider extends ServiceProvider
         Registered::class => [
             SendEmailVerificationNotification::class,
         ],
+        ExamFinishedEvent::class=>[
+            ExamCorrection::class
+        ]
         
     ];
 

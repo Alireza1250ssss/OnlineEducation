@@ -23,7 +23,7 @@ class Question extends Model
     }
 
     public function exams(){
-        return $this->belongsToMany(Exam::class);
+        return $this->belongsToMany(Exam::class)->withPivot('temp_score');
     }
 
     

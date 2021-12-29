@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Course;
 use app\models\User;
+use App\Models\UserExam;
 use Illuminate\Http\Request;
 
 class DashboardController extends Controller
@@ -50,6 +51,7 @@ class DashboardController extends Controller
     private function studentDashboard(User $user)
     {
         $courses = $user->courses;
-        return view('student.dashboard',compact('courses'));
+        $userExams = UserExam::whereBelongsTo($user)->where('taken',1)->get();
+        return view('student.dashboard',compact('courses','userExams'));
     }
 }

@@ -10,9 +10,13 @@
 
             <li class="title">Courses</li>
             <li class="d-none">
+                @isset(auth()->user()->courses)
                 <ul>
-                    <li onclick="show('courses-list')">Enrolled courses</li>
+                    @foreach(auth()->user()->courses as $course)
+                    <li onclick="show('course-{{$course->id}}-part')">{{$course->title}}</li>
+                    @endforeach
                 </ul>
+                @endisset
             </li>
 
         </ul>
