@@ -38,8 +38,8 @@ class DashboardController extends Controller
     }
 
     public function courseDashboard(Course $course){
-        $courseUsers=$course->users()->paginate(12);
-        $students = User::query()->where('role','student')->paginate(12);
+        $courseUsers=$course->users()->paginate(6);
+        $students = User::query()->where('role','student')->paginate(6);
         return view('course',compact('students','course','courseUsers'));
     }
 
