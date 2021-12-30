@@ -2,6 +2,7 @@
 
 namespace App\Http\Middleware;
 
+use App\Events\ExamFinishedEvent;
 use App\Models\UserExam;
 use Carbon\Carbon;
 use Closure;
@@ -21,6 +22,8 @@ class CheckTime
         $time = $request->route('exam')->duration;
         $start = UserExam::where('id', $request->session()->get('user_exam'))->first()->start_at;
         if (Carbon::now()->subMinute($time) > $start) {
+            ExamFinishedEvent::dispatch($request->session()->get('user_exam'),$request->route('exam')->id);
+            $request->session()->pull('user_exam');
             return redirect('student/time-ended');
         }
 

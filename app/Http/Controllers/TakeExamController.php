@@ -53,6 +53,7 @@ class TakeExamController extends Controller
 
         $this->updateAnswer($request);
         ExamFinishedEvent::dispatch($request->session()->get('user_exam'),$exam->id);
+        $request->session()->pull('user_exam');
         return view('student.exam.examEnded');
     }
 }
